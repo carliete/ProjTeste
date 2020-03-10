@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.AfterAll;
@@ -21,35 +22,34 @@ import testeAgora.User;
 
 class PersonTestes {
 
-	private String admin = "user";
-	private String admin2 = "pass";
-	private String nome = "nome";
+	String admin = "user";
+	String admin2 = "pass";
+	private String nome = "Teste";
 	private String nova = "Site";
 	
-	private static boolean conexao;
 	
+	private static boolean conexao;
+
 	@BeforeAll
 	public static void testeBeforeAll() {
+
 		// Testar se a conneção com o banco de dados foi Aberta
 		conexao = true;
 		System.out.println("Tentando iniciar a conexão com o banco de dados");
 		AssumeTrue();
-		
+
 	}
-	
-	
+
 	@AfterAll
 	public static void testeAfterAll() {
 		// Testar se a conneção com o banco de dados foi fechada
 		conexao = false;
 		System.out.println("Tentando fechar a conexão com o banco de dados");
 		AssumeFalse();
-		
-		
+
 	}
 
 	@Test
-	@Disabled
 	void test() {
 		User user = new User("user", "pass");
 		assertEquals(admin, user.user);
@@ -83,10 +83,11 @@ class PersonTestes {
 		assertNotEquals(pagi.nome, nova, "Pagina Já existente");
 	}
 
+	@Test
 	@BeforeEach
-	@Disabled
 	void testeBefore() {
-		
+		System.out.println("Verificando Usuários");
+
 	}
 
 	@AfterEach
@@ -100,21 +101,22 @@ class PersonTestes {
 	@Timeout(value = 600, unit = TimeUnit.MILLISECONDS)
 	void testeTime() throws InterruptedException {
 		// Se o salvamento passar do limite de tempo
-		// wait(700);
+		// Thread.sleep(700);
 		User user = new User(admin, admin2);
 		System.out.println(user);
 
 	}
-	
+
 	@Test
 	public static void AssumeFalse() {
-		//Se a condiçao nao for falsa da erro
+		// Se a condiçao nao for falsa da erro
 		Assumptions.assumeFalse(conexao);
 		System.out.println("Conexao Fechada com sucesso");
 	}
+
 	@Test
 	public static void AssumeTrue() {
-		//Se a condição não for verdadeira da erro
+		// Se a condição não for verdadeira da erro
 		Assumptions.assumeTrue(conexao);
 		System.out.println("Conexao iniciada com sucesso");
 	}
