@@ -28,24 +28,22 @@ class PersonTestes {
 	
 	private static boolean conexao;
 	
-	@Test
 	@BeforeAll
 	public static void testeBeforeAll() {
 		// Testar se a conneção com o banco de dados foi Aberta
 		conexao = true;
-		Assumptions.assumeTrue(conexao,"Conexao não iniciada");
-		System.out.println("Iniciei a conexÃ£o com o banco de dados");
-
+		System.out.println("Tentando iniciar a conexão com o banco de dados");
+		AssumeTrue();
+		
 	}
 	
 	
-	@Test
 	@AfterAll
 	public static void testeAfterAll() {
 		// Testar se a conneção com o banco de dados foi fechada
 		conexao = false;
-		Assumptions.assumeFalse(conexao,"Conexao não fechou");
-		System.out.println("Fechou a conexÃ£o com o banco de dados");
+		System.out.println("Tentando fechar a conexão com o banco de dados");
+		AssumeFalse();
 		
 		
 	}
@@ -88,7 +86,7 @@ class PersonTestes {
 	@BeforeEach
 	@Disabled
 	void testeBefore() {
-
+		
 	}
 
 	@AfterEach
@@ -109,18 +107,16 @@ class PersonTestes {
 	}
 	
 	@Test
-	@Disabled
-	public void AssumeFalse() {
+	public static void AssumeFalse() {
 		//Se a condiçao nao for falsa da erro
 		Assumptions.assumeFalse(conexao);
-		System.out.println("Conexao AssumeFalse");
+		System.out.println("Conexao Fechada com sucesso");
 	}
 	@Test
-	@Disabled
-	public void AssumeTrue() {
+	public static void AssumeTrue() {
 		//Se a condição não for verdadeira da erro
 		Assumptions.assumeTrue(conexao);
-		System.out.println("Conexao AssumeTrue");
+		System.out.println("Conexao iniciada com sucesso");
 	}
 
 }
