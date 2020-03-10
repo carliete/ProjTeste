@@ -3,6 +3,7 @@ package teste1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +29,14 @@ class Teste {
 		Pagina pag = new Pagina(null, "b");
 		assertNull(pag.nome, "O nome da pagina não pode estar em branco");
 
+	}
+	
+	@Test
+	void testExpectedException() {
+	  Assertions.assertThrows(NumberFormatException.class, () -> {
+	    Integer.parseInt("azul");
+	  });
+	 
 	}
 
 }
