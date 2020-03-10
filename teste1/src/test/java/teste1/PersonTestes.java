@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -24,6 +26,7 @@ class PersonTestes {
 	private String nova = "Site";
 
 	@Test
+	@Disabled
 	void test() {
 		User user = new User("user", "pass");
 		assertEquals(admin, user.user);
@@ -32,6 +35,7 @@ class PersonTestes {
 	}
 
 	@Test
+	@Disabled
 	void test2() {
 		// Se a pagina tiver uma descrição gera um erro
 		Pagina pag = new Pagina("blog", null);
@@ -40,6 +44,7 @@ class PersonTestes {
 	}
 
 	@Test
+	@Disabled
 	void testExpectedException() {
 		// Caso a pessoa digite um numero no nome gera erro
 		Assertions.assertThrows(NumberFormatException.class, () -> {
@@ -48,6 +53,7 @@ class PersonTestes {
 	}
 
 	@Test
+	@Disabled
 	void testNotEquals() {
 		//Retorna erro se tiver duas paginas com o mesmo nome
 		Pagina pagi = new Pagina("Blog", "a");
@@ -56,6 +62,7 @@ class PersonTestes {
 	
 	@Test 
 	@BeforeEach
+	@Disabled
 	void testeBefore() {
 		
 	}
@@ -64,22 +71,27 @@ class PersonTestes {
 	@AfterEach
 	void testAfter() {
 		
-	}
-	
-	@Test 
-	@BeforeAll
-	void testeBeforeAll() {
-		
-	}
-	@Test 
-	@AfterAll
-	void testeAfterAll() {
 		
 	}
 	
+	
+	/*
+	 * @BeforeAll public static void testeBeforeAll() { // Testar se a conneção com
+	 * o banco de dados foi Aberta
+	 * System.out.println("Iniciei a conexÃ£o com o banco de dados"); }
+	 * 
+	 * @AfterAll public static void testeAfterAll() { // Testar se a conneção com o
+	 * banco de dados foi fechada
+	 * System.out.println("Fechou a conexÃ£o com o banco de dados"); }
+	 */
+	
 	@Test 
-	@Timeout(value = 0)
-	void testeTime() {
+	@Timeout(value = 600, unit = TimeUnit.MILLISECONDS)
+	void testeTime() throws InterruptedException {
+		//Se o salvamento passar do limite de tempo
+		//wait(700);
+		User user = new User (admin, admin2);
+		System.out.println(user);
 		
 	}
 	
