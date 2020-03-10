@@ -4,9 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import testeAgora.Pagina;
 import testeAgora.User;
@@ -47,7 +52,36 @@ class PersonTestes {
 		//Retorna erro se tiver duas paginas com o mesmo nome
 		Pagina pagi = new Pagina("Blog", "a");
 		assertNotEquals(pagi.nome, nova, "Pagina Já existente");
-
 	}
-
+	
+	@Test 
+	@BeforeEach
+	void testeBefore() {
+		
+	}
+	
+	@Test 
+	@AfterEach
+	void testAfter() {
+		
+	}
+	
+	@Test 
+	@BeforeAll
+	void testeBeforeAll() {
+		
+	}
+	@Test 
+	@AfterAll
+	void testeAfterAll() {
+		
+	}
+	
+	@Test 
+	@Timeout(value = 0)
+	void testeTime() {
+		
+	}
+	
+	
 }
