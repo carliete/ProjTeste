@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +29,8 @@ class PersonTestes {
 	private String nome = "Teste";
 	private String nova = "Site";
 	
-	
+	static List<User> users = new ArrayList<User>();
+	static List<Pagina> paginas = new ArrayList<Pagina>();
 	private static boolean conexao;
 
 	@BeforeAll
@@ -37,7 +40,13 @@ class PersonTestes {
 		conexao = true;
 		System.out.println("Tentando iniciar a conexão com o banco de dados");
 		AssumeTrue();
-
+		users.add(new User("a","a"));
+		users.add(new User("b","b"));
+		users.add(new User("c","c"));
+		
+		paginas.add(new Pagina("a","a"));
+		paginas.add(new Pagina("b","b"));
+		paginas.add(new Pagina("c","c"));
 	}
 
 	@AfterAll
@@ -58,7 +67,6 @@ class PersonTestes {
 	}
 
 	@Test
-	@Disabled
 	void test2() {
 		// Se a pagina tiver uma descrição gera um erro
 		Pagina pag = new Pagina("blog", null);
@@ -67,7 +75,6 @@ class PersonTestes {
 	}
 
 	@Test
-	@Disabled
 	void testExpectedException() {
 		// Caso a pessoa digite um numero no nome gera erro
 		Assertions.assertThrows(NumberFormatException.class, () -> {
@@ -76,7 +83,6 @@ class PersonTestes {
 	}
 
 	@Test
-	@Disabled
 	void testNotEquals() {
 		// Retorna erro se tiver duas paginas com o mesmo nome
 		Pagina pagi = new Pagina("Blog", "a");
@@ -85,25 +91,24 @@ class PersonTestes {
 
 	@Test
 	@BeforeEach
+	@Disabled
 	void testeBefore() {
-		System.out.println("Verificando Usuários");
+		System.out.println("Verificando Paginas cadastradas");
 
-	}
+		}
 
 	@AfterEach
-	@Disabled
 	void testAfter() {
-
+		
 	}
 
 	@Test
-	@Disabled
 	@Timeout(value = 600, unit = TimeUnit.MILLISECONDS)
 	void testeTime() throws InterruptedException {
 		// Se o salvamento passar do limite de tempo
 		// Thread.sleep(700);
 		User user = new User(admin, admin2);
-		System.out.println(user);
+		users.add(user);
 
 	}
 
